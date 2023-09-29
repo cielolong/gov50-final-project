@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: Cielo Long 
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to the mistreatment of autistic individuals by police officers. Little is known about the kinds of interactions law enforcement has with Autistic individuals as well as the patterns of these interactions. Does law enforcement have a positive or negative relationship with the autistic community? Will the findings in this project provide important implications for law enforcement public relations and training/policy?
