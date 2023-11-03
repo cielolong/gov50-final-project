@@ -10,4 +10,31 @@ output:
 
 Does the level of democracy in a country influence its propensity for political violence? In this study I plan to explore the relationship between the level of democracy in a specific country and its engagement in political violence. I hypothesize that less democratic countries are more prone to political violence, as they are less likely to control radical political expression and violent extremists have more room to operate, potentially leading to higher levels of civil unrest, protests, and violent conflicts. When countries are democratic and free, they are safer and more prosperous as citizens are less likely to retaliate against the government since they have control over their lives and work. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy, which will be measured using the Freedom of the World Dataset (2023). F = Free, NF = Not Free, PF = Partially Free. The outcome variable is the incidence of political violence in a given country, measured as the number of purges, revolutions, riots and death from political violence. This variable is measured using the Political Violence data set (violence.csv). If there is a significant and positive correlation between lower ranges of democracy and higher rates of political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of political violence, this would provide evidence against my hypothesis. 
 
+## Visuallizing Dataset 
 
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+violence_data <- read.csv("~/Downloads/violence.csv", header=TRUE)
+violence_data <- violence_data |>
+  mutate(categorized_democracy = case_when(
+    democ80 + democ70 > 6 ~ "low",
+    democ80 + democ70 < 3 ~ "high", 
+    democ80 + democ70 >= 3 & democ80 + democ70 < 5 ~ "middle",
+  )) |>
+   mutate(purges = purges80 + purges70 + purges60)
+
+graph1<- violence_data|>
+  filter(purges > 0)|>
+  ggplot(aes(x = purges, fill = categorized_democracy)) +
+  geom_histogram(position = "dodge", bins = 20, color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Purges by Categorized Democracy Levels",
+       x = "Purges",
+       y = "Number of Countries") +
+  scale_fill_manual(values = c("low" = "blue", "middle" = "green", "high" = "red"))+
+  scale_x_continuous(breaks = 1:8)
+
+graph1
+```
+For my visualization, I decided to split countries based on their levels of democracy and measure how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this measure I categorized countries into "low" "middle" and "high" based on their levels of democracy. On the x axis we see the amount of purges that occur within these countries, and the Y access represents the # of countries who engage in purging their citizens. As seen in the histogram above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. However, most countries in general, typically don't purge their citizens at all despite their level of democracy. 
