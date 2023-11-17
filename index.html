@@ -1545,21 +1545,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span></span>
 <span><span class='va'>graph1</span></span></code></pre>
 </div>
-<img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>violence_data</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>purges</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>purges</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>count <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code># A tibble: 5 × 2
-  purges count
-   &lt;int&gt; &lt;int&gt;
-1      1    16
-2      2     8
-3      4     4
-4      5     1
-5      7     1</code></pre>
+<p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <p>For my visualization, I decided to categorize countries according to their level of democracy and asses how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this scale, I segmented countries into “low” “middle” and “high” based on their levels of democracy. On the x axis we observe the frequency of purges within these countries, while the y axis represents the count of countries engaging in this practice. As seen in the stacked bar chart above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. Nevertheless it’s noteworthy that most countries in general, irrespective of their democratic standing, typically refrain from purging their citizens. In this positively skewed histogram we see that most countries are concentrated towards the lower values of purges (between 1-2 purges).</p>
 <p>Dataset used: violence.csv</p>
@@ -1602,7 +1588,7 @@ Coefficients:
   0.0257547    0.0004641  </code></pre>
 </div>
 <p>Interpretation: On average, 1 unit increase in the level democracy roughly correlates with a 0.004 M increase in the number of deaths from political violence (about 4,000 deaths). <em>Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest</em>. With that said, a one unit “decrease” in democracy will result in about 4,000 deaths.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

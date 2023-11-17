@@ -35,11 +35,6 @@ graph1<- violence_data|>
   scale_fill_manual(values = c("low" = "blue", "middle" = "green", "high" = "red"))+
   scale_x_continuous(breaks = 1:8)
 graph1
-
-violence_data |>
-  filter(purges > 0) |>
-  group_by(purges) |>
-  summarize(count = n())
 ```
 For my visualization, I decided to categorize countries according to their level of democracy and asses how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this scale, I segmented countries into "low" "middle" and "high" based on their levels of democracy. On the x axis we observe the frequency of purges within these countries, while the y axis represents the count of countries engaging in this practice. As seen in the stacked bar chart above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. Nevertheless it's noteworthy that most countries in general, irrespective of their democratic standing, typically refrain from purging their citizens. In this positively skewed histogram we see that most countries are concentrated towards the lower values of purges (between 1-2 purges). 
 
