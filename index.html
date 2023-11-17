@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1517,9 +1517,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>##Project Proposal</p>
-<p>Does the level of democracy in a country influence its propensity for political violence? In this study I plan to explore the relationship between the level of democracy in a specific country and its engagement in political violence. I hypothesize that less democratic countries are more prone to political violence, as they are less likely to control radical political expression and violent extremists have more room to operate, potentially leading to higher levels of civil unrest, protests, and violent conflicts. When countries are democratic and free, they are safer and more prosperous as citizens are less likely to retaliate against the government since they have control over their lives and work. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy, which will be measured using the Freedom of the World Dataset (2023). F = Free, NF = Not Free, PF = Partially Free. The outcome variable is the incidence of political violence in a given country, measured as the number of purges, revolutions, riots and death from political violence. This variable is measured using the Political Violence data set (violence.csv). If there is a significant and positive correlation between lower ranges of democracy and higher rates of political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of political violence, this would provide evidence against my hypothesis.</p>
-<h2 id="data-visualization">Data Visualization</h2>
+<h2 id="milestone-1-project-proposal">Milestone 1: Project Proposal</h2>
+<p>Does the level of democracy in a country influence its propensity for political violence? In this study I plan to explore the relationship between the level of democracy in a specific country and its engagement in political violence. I hypothesize that less democratic countries are more prone to political violence, as they are less likely to control radical political expression and violent extremists have more room to operate, potentially leading to higher levels of civil unrest, protests, and violent conflicts. When countries are democratic and free, they are safer and more prosperous as citizens are less likely to retaliate against the government since they have control over their lives and work. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy, which will be measured using the Political Violence data set (violence.csv). The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. The outcome variable is the incidence of political violence in a given country, measured as the number of purges, revolutions, riots and death from political violence. This variable is measured using the Political Violence data set (violence.csv). If there is a significant and positive correlation between lower ranges of democracy and higher rates of political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of political violence, this would provide evidence against my hypothesis.</p>
+<h2 id="milestone-3-data-visualization">Milestone 3: Data Visualization</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
@@ -1535,22 +1535,74 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>purges <span class='op'>=</span> <span class='va'>purges80</span> <span class='op'>+</span> <span class='va'>purges70</span> <span class='op'>+</span> <span class='va'>purges60</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>graph1</span><span class='op'>&lt;-</span> <span class='va'>violence_data</span><span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>purges</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>purges</span>, fill <span class='op'>=</span> <span class='va'>categorized_democracy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span>, bins <span class='op'>=</span> <span class='fl'>20</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>purges</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>purges</span>, fill <span class='op'>=</span> <span class='va'>categorized_democracy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Distribution of Purges by Categorized Democracy Levels"</span>,</span>
 <span>       x <span class='op'>=</span> <span class='st'>"Purges"</span>,</span>
 <span>       y <span class='op'>=</span> <span class='st'>"Number of Countries"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"low"</span> <span class='op'>=</span> <span class='st'>"blue"</span>, <span class='st'>"middle"</span> <span class='op'>=</span> <span class='st'>"green"</span>, <span class='st'>"high"</span> <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span></span>
-<span></span>
 <span><span class='va'>graph1</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+<img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>violence_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>purges</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>purges</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>count <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>For my visualization, I decided to categorize countries according to their level of democracy and asses how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this scale, I segmented countries into “low” “middle” and “high” based on their levels of democracy. On the x axis we observe the frequency of purges within these countries, while the y axis represents the count of countries engaging in this practice. As seen in the histogram above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. Nevertheless it’s noteworthy that most countries in general, irrespective of their democratic standing, typically refrain from purging their citizens. In this positively skewed histogram we see that most countries are concentrated towards the lower values of purges (between 1-2 purges).</p>
+<pre><code># A tibble: 5 × 2
+  purges count
+   &lt;int&gt; &lt;int&gt;
+1      1    16
+2      2     8
+3      4     4
+4      5     1
+5      7     1</code></pre>
+</div>
+<p>For my visualization, I decided to categorize countries according to their level of democracy and asses how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this scale, I segmented countries into “low” “middle” and “high” based on their levels of democracy. On the x axis we observe the frequency of purges within these countries, while the y axis represents the count of countries engaging in this practice. As seen in the stacked bar chart above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. Nevertheless it’s noteworthy that most countries in general, irrespective of their democratic standing, typically refrain from purging their citizens. In this positively skewed histogram we see that most countries are concentrated towards the lower values of purges (between 1-2 purges).</p>
 <p>Dataset used: violence.csv</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="milestone-4-2nd-data-visualization-analysis">Milestone 4 (2nd data visualization + analysis)</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span><span class='va'>violence_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/violence.csv"</span>, header<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span><span class='va'>violence_data</span> <span class='op'>&lt;-</span> <span class='va'>violence_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>democracy <span class='op'>=</span> <span class='va'>democ80</span>, <span class='va'>democ70</span>, <span class='va'>democ60</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>deaths <span class='op'>=</span> <span class='va'>deathsPC80</span>, <span class='va'>deathsPC60</span>, <span class='va'>deathsPC80</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>scatterplot1</span><span class='op'>&lt;-</span> <span class='va'>violence_data</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>deaths</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>violence_data</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>democracy</span>, y <span class='op'>=</span> <span class='va'>deaths</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Levels of Democracy"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Deaths from Political Violence (in M)"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"The relationship between Democracy &amp; Deaths"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> </span>
+<span><span class='va'>scatterplot1</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>The above visualization demonstrates the relationship between levels of democracy and the number of deaths from political violence. There seems to be a positive correlation between the independent and dependent variables, according to the straight line of best fit (in red). <em>Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest</em>. With that said, countries that are less democratic are more likely to incite violence towards their citizens, resulting in death.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>deaths</span> <span class='op'>~</span> <span class='va'>democracy</span>, data <span class='op'>=</span> <span class='va'>violence_data</span><span class='op'>)</span></span>
+<span><span class='va'>fit</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = deaths ~ democracy, data = violence_data)
+
+Coefficients:
+(Intercept)    democracy  
+  0.0257547    0.0004641  </code></pre>
+</div>
+<p>Interpretation: On average, 1 unit increase in the level democracy roughly correlates with a 0.004 M increase in the number of deaths from political violence (about 4,000 deaths). <em>Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest</em>. With that said, a one unit “decrease” in democracy will result in about 4,000 deaths.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

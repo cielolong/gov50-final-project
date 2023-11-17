@@ -47,7 +47,15 @@ Dataset used: violence.csv
 
 # Milestone 4 (2nd data visualization + analysis)
 
-```{r, warning = FALSE}
+```{r, warning=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+violence_data <- read.csv("~/Downloads/violence.csv", header=TRUE)
+violence_data <- violence_data |>
+  mutate(democracy = democ80, democ70, democ60) |>
+   mutate(deaths = deathsPC80, deathsPC60, deathsPC80)
+
 scatterplot1<- violence_data|>
   filter(deaths > 0)|>
  ggplot(violence_data, mapping = aes(x = democracy, y = deaths)) +
