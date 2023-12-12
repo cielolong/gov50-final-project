@@ -17,11 +17,9 @@ By understanding the dynamics between democracy and repression, I hope to explor
 
 The data used for this cross-sectional study was derived from the Political Violence Data set. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy and the outcome variables of interest include the number of purges in a country and the number of deaths from political violence. As mentioned previously, repression is a complex phenomenon. To investigate the relationship further, it is imperative that I use these two variables to provide a comprehensive analysis of political repression. While purges reflect the repressive actions taken against certain groups of the population, deaths from political violence reflects repressive actions taken against the general population as a whole. By providing different dimensions of repression, this study will offer a more nuanced understanding of how countries with varying levels of democracy engage in varying forms of repression. 
 
-The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country's electoral process, political participation, functioning of government, freedom of expression etc. *Purges are measured based on* *Deaths from political violence are measured based on* If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis. 
+The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country's electoral process, political participation, functioning of government, freedom of expression etc. The purges variable, defined as any systematic elimination by jailing or execution of political opposition within the ranks of the regime or the opposition was measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." The variable of deaths from political violence was also measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis. 
 
-Below illustrates the two outcome variables of interest: The frequency of purges and deaths resulting from political violence 
  
-
 ```{r}
 #Reshaping Data
 library(tidyverse)
@@ -51,6 +49,9 @@ violence_data_rshp <- violence_data |>
 
 ```
 
+# Outcome Variable (Purges)
+
+Below illustrates the two outcome variables of interest: The frequency of purges and deaths resulting from political violence 
 
 ```{r}
 #Outcome Variable (Purges)
@@ -67,6 +68,7 @@ purges_plot <- violence_data_rshp |>
 
 purges_plot
 ```
+
 
 For this visualization, I decided to categorize countries according to their level of democracy and asses how often these countries purge their citizens. The scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. Using this scale, I segmented countries into "low" "middle" and "high" based on their levels of democracy. On the x axis we observe the time frame of these occurrences (70s & 80s), while the y axis represents the frequency of purges within these countries. As seen in the bar plot above, we notice that typically, less democratic countries tend to engage more frequently in the purging of their citizens. It is also noteworthy to mention that high democratic countries show no evidence of purging their citizens within during this time frame. *talk about skewed?*
 
@@ -132,10 +134,12 @@ scatterplot1
 
 Prior to performing a regression of the countries with varying levels of democracy and their frequency of purges, a scatterplot can visualize the bivariate relationship between these two variables. The box plot graph above plots the levels of democracy on the x-axis, and plots the number of purges on the y-axis. 
 
-From this visualization we observe that as the level of democracy decreases there is an observable increase in the frequency of purges. According to the linear model used, this relationship/trend is not statistically significant due to the flat trend line. This indicates that although less democratic countries tend to purge their citizens more, there could also be other factors that determine whether these countries purge their citizens 
+From this visualization we observe that as the level of democracy decreases there is a minimal, but clearly positive increase in the frequency of purges. This indicates that purges are slightly more common in less democratic regimes. Even though the trending increase is small, it is consistent enough across the data points to point to a pattern where lower levels of democracy are associated with higher frequencies of purges.
 
-# Regression (deaths from poltiical violence)
+# Regression Analysis (Deaths from Political Violence)
+
 ```{r}
+#Regression (Deaths from political violence)
 df_reg <- violence_data_rshp 
 
 deaths_PV <- lm(deaths ~ as.factor(categorized_democracy) + corrupti + gyp  + as.factor(govtcris), data = df_reg)
@@ -143,7 +147,9 @@ deaths_PV <- lm(deaths ~ as.factor(categorized_democracy) + corrupti + gyp  + as
 summary(deaths_PV)
 
 ```
+# Regression Table
 ```{r}
+#Regression table for deaths from political violence  
 pv_labels <- c(
     "(Intercept)" = "Intercept",
     "democ" = "Level of Democracy",
@@ -156,9 +162,9 @@ pv_labels <- c(
                                            "p = {p.value}"),
                              gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
-# Interpetation of Regression
+# Interpetation 
 
-The coefficient for low levels of democracy (as.factor(categorized_democracy)low) is approximately 0.00003805. This suggests that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of deaths from political violence increases by a factor of 0.00003805, holding all other variables constant.
+The coefficient for low levels of democracy (as.factor(categorized_democracy)low) is approximately 0.00003805. This suggests that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of deaths from political violence increases by a factor of 0.00003805, holding all other variables constant. *the counfounding variables are*
 
 # Statistical Significance
 
@@ -169,21 +175,22 @@ one reason that statistical significance cannot ... = few data points.
 future: consider having the same research but using diff dataset = more observations.
 
 
-
 # Causality 
 
 As for causality, the coefficient estimate itself does not imply causation, even if it were statistically significant. Establishing causality would require a research design that adequately addresses potential confounding factors and establishes a clear temporal precedence. Given that this is a cross-sectional analysis we should be cautious in making causal interpretations since other unobserved factors could influence both democracy levels and the number of deaths, leading to omitted variable bias.
 
-#Regression for Purges  
+# Regression Analysis for Purges  
 ```{r}
+#Regression for Purges 
 df_reg <- violence_data_rshp 
 
 purges_r <- lm(purges ~ as.factor(categorized_democracy) + corrupti + gyp  + as.factor(govtcris), data = df_reg)
 
 summary(purges_r)
 ```
-#Table for regression (purges)
+# Regression Table
 ```{r}
+#Regression table (purges )
 purges_labels <- c(
     "(Intercept)" = "Intercept",
     "democ" = "Level of Democracy",
@@ -197,7 +204,7 @@ purges_labels <- c(
                       
                              gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
-# Interpretation for regression 
+# Interpretation 
 This regression indicates that countries lower in democratic levels will roughly increase the frequency of purges by about .200 points while holding other variables constant. Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. With that said, a one unit "decrease" in democracy will result in a increase in the frequency of purges.  
 
  
@@ -215,5 +222,6 @@ The regression results in this study contradict one portion of my analysis which
 BAsed on the results from the regression my hypothesis that less democratic countrues experience more deaths a a result from political violence and purge their citizens more cannot be proven nor negated. It is imperative that another dataset be used for this question in order to provide a more conclusive analysis of the relationshios between the two variables. 
 
 Notes: 
-- don't want code to appear "vio
-- what if both of my results are not statistically significant? do i find the confidence intervals?
+- remove and reorganize code 
+- rewrite sections in your own words 
+- finish off conclusion 

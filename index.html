@@ -1523,13 +1523,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Does the level of democracy in a country influence its propensity for violent repression against its citizens? In this study I explore the relationship between the level of democracy in a specific country and its engagement in political repression. Due to the multifaceted nature of repression, this study will measure repression by examining both the frequency of purges that take place within a country as well as the prevalence of political violence. I hypothesize that less democratic countries are more prone to political violence, as they are less likely to control radical political expression allowing violent extremists more room to operate, potentially leading to higher levels of civil unrest, protests, and violent conflicts. In addition, given that there is typically more opposition towards an illegitimate regime, less democratic countries will be more inclined to purge their citizens with the hope of mitigating any threats. When countries are democratic and free, they are safer and more prosperous as citizens are less likely to retaliate against the government since they have control over their lives and work.</p>
 <p>By understanding the dynamics between democracy and repression, I hope to explore how we as a society can increase the promotion of civil liberties and bolster the protections of citizens all across the globe. Efforts have been taken globally to promote democratic institutions of government, indicating that democratic governance reduces the likelihood of political repression. This has led to many policy makers in foreign policy to mitigate conditions that lead to repressive actions. If my hypothesis is supported, this would potentially suggest that policies promoting democratic governance may lead to the reduction of political instability and may serve as a strategy for reducing repressive actions taken against citizens. With that said, the information collected from this study could potentially be useful for civil society organizations as well as political officials who work on promoting human rights.</p>
 <h1 id="data-section">Data Section</h1>
-<p>The data used for this cross-sectional study was derived from the Political Violence Data set. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy and the outcome variables of interest include the number of purges in a country and the number of deaths from political violence. As mentioned previously, repression is a complex phenomenon. Therefore, it is imperative that I use these two variables to provide a comprehensive analysis of political repression. While purges reflect the repressive actions taken against certain groups of the population, deaths from political violence reflects repressive actions taken against the general population as a whole. By providing different dimensions of repression, this study will offer a more nuanced understanding of how countries with varying levels of democracy engage in varying forms of repression.</p>
-<p>The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country’s electoral process, political participation, functioning of government, freedom of expression etc. <em>Purges are measured based on</em> <em>Deaths from political violence are measured based on</em> If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis.</p>
+<p>The data used for this cross-sectional study was derived from the Political Violence Data set. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy and the outcome variables of interest include the number of purges in a country and the number of deaths from political violence. As mentioned previously, repression is a complex phenomenon. To investigate the relationship further, it is imperative that I use these two variables to provide a comprehensive analysis of political repression. While purges reflect the repressive actions taken against certain groups of the population, deaths from political violence reflects repressive actions taken against the general population as a whole. By providing different dimensions of repression, this study will offer a more nuanced understanding of how countries with varying levels of democracy engage in varying forms of repression.</p>
+<p>The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country’s electoral process, political participation, functioning of government, freedom of expression etc. The purges variable, defined as any systematic elimination by jailing or execution of political opposition within the ranks of the regime or the opposition was measured by Arthur M. banks in the dataset “Cross-National Time Series Data Archive.” The variable of deaths from political violence was also measured by Arthur M. banks in the dataset “Cross-National Time Series Data Archive.” If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis.</p>
 <p>Below illustrates the two outcome variables of interest: The frequency of purges and deaths resulting from political violence</p>
-<h1 id="reshaping-dataset">Reshaping Dataset</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Reshaping Data</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
 <span><span class='va'>violence_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/violence.csv"</span>, header<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
@@ -1551,13 +1551,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>                                 levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"high"</span>, <span class='st'>"middle"</span>, <span class='st'>"low"</span><span class='op'>)</span><span class='op'>)</span>,</span>
 <span>  binary_democracy <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
 <span>           <span class='va'>democ</span> <span class='op'>&lt;</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"democracy"</span>, </span>
-<span>           <span class='va'>democ</span> <span class='op'>&gt;=</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"autocracy"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>           <span class='va'>democ</span> <span class='op'>&gt;=</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"autocracy"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>purges</span><span class='op'>)</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
-<h1 id="outcome-variable-purges">Outcome variable (Purges)</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>purges_plot</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Outcome Variable (Purges)</span></span>
+<span><span class='va'>purges_plot</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>democ</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>decade</span><span class='op'>)</span>, y<span class='op'>=</span> <span class='va'>purges</span>, fill <span class='op'>=</span> <span class='va'>categorized_democracy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1576,7 +1577,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1 id="outcome-variable-deaths-from-political-violence">Outcome Variable: Deaths from political violence</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>purges_plot</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Outcome Variable (Deaths from political violence)</span></span>
+<span><span class='va'>purges_plot</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>democ</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>decade</span><span class='op'>)</span>, y<span class='op'>=</span> <span class='op'>(</span><span class='va'>deaths_thousand</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='va'>categorized_democracy</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1595,14 +1597,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1 id="results">Results</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boxplot1</span><span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span><span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Box Plot (relationship between levels of democract &amp; Deaths)</span></span>
+<span><span class='va'>boxplot1</span><span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span><span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>deaths_thousand</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>democ</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>categorized_democracy</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>deaths_thousand</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
 <span>    x <span class='op'>=</span> <span class='st'>"Levels of Democracy"</span>,</span>
 <span>    y <span class='op'>=</span> <span class='st'>"Deaths from Political Violence (in M)"</span>,</span>
-<span>    title <span class='op'>=</span> <span class='st'>"The relationship between Democracy &amp; Deaths"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>    title <span class='op'>=</span> <span class='st'>"The relationship between Levels of Democ &amp; Deaths from Political Violence"</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span> </span>
 <span><span class='va'>boxplot1</span></span></code></pre>
 </div>
@@ -1612,21 +1615,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>From this visualization we observe that High levels of democracy are generally associated with fewer deaths from political violence, with some notable exceptions (outliers). Middle levels of democracy have a wider spread of deaths, indicating more variability in political violence outcomes. Low levels of democracy also have a wide spread but tend to have a higher median number of deaths from political violence, which can imply that lower democracy levels are more often associated with higher deaths, although this is not universally the case.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>scatterplot1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>violence_data_rshp</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>democ</span>, y <span class='op'>=</span> <span class='va'>purges</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Scatterplot (Relationship between levels of democracy and the frequency of purges)</span></span>
+<span><span class='va'>scatterplot1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>violence_data_rshp</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>democ</span>, y <span class='op'>=</span> <span class='va'>purges</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_jitter.html'>geom_jitter</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>TRUE</span>, color <span class='op'>=</span> <span class='st'>"indianred1"</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>  </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_brewer.html'>scale_color_brewer</a></span><span class='op'>(</span>palette <span class='op'>=</span> <span class='st'>"Set1"</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
 <span>    x <span class='op'>=</span> <span class='st'>"Levels of Democracy"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Purges"</span>,</span>
-<span>    title <span class='op'>=</span> <span class='st'>"The relationship between Democracy &amp; Purges"</span></span>
+<span>    y <span class='op'>=</span> <span class='st'>"Frequency of Purges"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"The relationship between Levels of Democ &amp; Purges"</span></span>
 <span>  <span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>  <span class='co'># Clean theme</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
 <span>    plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>, </span>
 <span>    axis.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>, </span>
 <span>    axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span><span class='op'>)</span>  </span>
-<span>  <span class='op'>)</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>violence_data_rshp</span><span class='op'>$</span><span class='va'>purges</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>scatterplot1</span></span></code></pre>
 </div>
@@ -1634,10 +1638,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Prior to performing a regression of the countries with varying levels of democracy and their frequency of purges, a scatterplot can visualize the bivariate relationship between these two variables. The box plot graph above plots the levels of democracy on the x-axis, and plots the number of purges on the y-axis.</p>
 <p>From this visualization we observe that as the level of democracy decreases there is an observable increase in the frequency of purges. According to the linear model used, this relationship/trend is not statistically significant due to the flat trend line. This indicates that although less democratic countries tend to purge their citizens more, there could also be other factors that determine whether these countries purge their citizens</p>
-<h1 id="regression-deaths-from-poltiical-violence">Regression (deaths from poltiical violence)</h1>
+<h1 id="regression-analysis-deaths-from-political-violence">Regression Analysis (Deaths from Political Violence)</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df_reg</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Regression (Deaths from political violence)</span></span>
+<span><span class='va'>df_reg</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> </span>
 <span></span>
 <span><span class='va'>deaths_PV</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>deaths</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>categorized_democracy</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>corrupti</span> <span class='op'>+</span> <span class='va'>gyp</span>  <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>govtcris</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>df_reg</span><span class='op'>)</span></span>
 <span></span>
@@ -1677,13 +1682,15 @@ as.factor(govtcris)4                     0.6208
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Residual standard error: 0.2533 on 78 degrees of freedom
-  (537 observations deleted due to missingness)
+  (272 observations deleted due to missingness)
 Multiple R-squared:  0.04764,   Adjusted R-squared:  -0.05003 
 F-statistic: 0.4878 on 8 and 78 DF,  p-value: 0.8614</code></pre>
 </div>
+<h1 id="regression-table">Regression Table</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>pv_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Table of regression </span></span>
+<span><span class='va'>pv_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
 <span>    <span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
 <span>    <span class='st'>"democ"</span> <span class='op'>=</span> <span class='st'>"Level of Democracy"</span>,</span>
 <span>    <span class='st'>"corrupti"</span> <span class='op'>=</span> <span class='st'>"Level of Corruption"</span>,</span>
@@ -1931,15 +1938,20 @@ R2 Adj.
 </tbody>
 </table>
 </div>
-<h1 id="interpetation-of-regression">Interpetation of Regression</h1>
-<p>This regression indicates the difference in the number of deaths from political violence for countries with a low level of democracy compared to the high and middle levels of democracy. The coefficient is 0.000 with a standard error of 0.077 and a p-value of 1.000. This suggests that there is no difference in the number of deaths from political violence between low and high democracy countries within this model, and the result is not statistically significant.</p>
+<h1 id="interpetation">Interpetation</h1>
+<p>The coefficient for low levels of democracy (as.factor(categorized_democracy)low) is approximately 0.00003805. This suggests that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of deaths from political violence increases by a factor of 0.00003805, holding all other variables constant.</p>
 <h1 id="statistical-significance">Statistical Significance</h1>
-<p>The association between levels of democracy and deaths resulting from political violence is not statistically significant at the alpha level of 0.05. This means that, based on our sample data and the regression model used, we do not have sufficient evidence to conclude that varying levels of democracy have a distinct effect on the number of deaths resulting from political violence. The p-values for the middle and low levels of democracy, when compared to the high level (assuming high is the reference category), are above the threshold of 0.05, indicating that any observed differences in death rates across these categories of democracy could very well be due to random chance rather than a true underlying relationship.</p>
-#Regression for Purges<br />
-
+<p>In terms of statistical significance, the p-value associated with the low level of democracy coefficient is 0.9996, which is well above conventional significance level of 0.05. This means that the evidence is not strong enough to reject the null hypothesis that there is no relationship between low levels of democracy and the number of deaths due to political violence. In other words, we cannot confidently claim that there is a statistically significant relationship between low levels of democracy and deaths from political violence based on this regression output.</p>
+<h1 id="k">K</h1>
+<p>one reason that statistical significance cannot … = few data points.
+future: consider having the same research but using diff dataset = more observations.</p>
+<h1 id="causality">Causality</h1>
+<p>As for causality, the coefficient estimate itself does not imply causation, even if it were statistically significant. Establishing causality would require a research design that adequately addresses potential confounding factors and establishes a clear temporal precedence. Given that this is a cross-sectional analysis we should be cautious in making causal interpretations since other unobserved factors could influence both democracy levels and the number of deaths, leading to omitted variable bias.</p>
+<h1 id="regression-analysis-for-purges">Regression Analysis for Purges</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df_reg</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Regression for Purges </span></span>
+<span><span class='va'>df_reg</span> <span class='op'>&lt;-</span> <span class='va'>violence_data_rshp</span> </span>
 <span></span>
 <span><span class='va'>purges_r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>purges</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>categorized_democracy</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>corrupti</span> <span class='op'>+</span> <span class='va'>gyp</span>  <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>govtcris</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>df_reg</span><span class='op'>)</span></span>
 <span></span>
@@ -1979,14 +1991,15 @@ as.factor(govtcris)4                     0.7145
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Residual standard error: 0.5591 on 86 degrees of freedom
-  (529 observations deleted due to missingness)
+  (264 observations deleted due to missingness)
 Multiple R-squared:  0.1725,    Adjusted R-squared:  0.09554 
 F-statistic: 2.241 on 8 and 86 DF,  p-value: 0.03183</code></pre>
 </div>
-#Table for regression (purges)
+<h1 id="regression-table-1">Regression Table</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>purges_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Regression table (purges )</span></span>
+<span><span class='va'>purges_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
 <span>    <span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
 <span>    <span class='st'>"democ"</span> <span class='op'>=</span> <span class='st'>"Level of Democracy"</span>,</span>
 <span>    <span class='st'>"corrupti"</span> <span class='op'>=</span> <span class='st'>"Level of Corruption"</span>,</span>
@@ -2235,16 +2248,17 @@ R2 Adj.
 </tbody>
 </table>
 </div>
-<h1 id="interpretation-for-regression">Interpretation for regression</h1>
-<p>This regression indicates that countries lower in democratic levels will while holding other variables constant. Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. With that said, a one unit “decrease” in democracy will result in a increase in the frequency of purges.</p>
+<h1 id="interpretation">Interpretation</h1>
+<p>This regression indicates that countries lower in democratic levels will roughly increase the frequency of purges by about .200 points while holding other variables constant. Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. With that said, a one unit “decrease” in democracy will result in a increase in the frequency of purges.</p>
 <h1 id="statistical-significane">Statistical Significane</h1>
 <p>While holding other variables constant, The coefficient for the level of democracy is 0.037, suggesting a very small positive association with the frequency of purges; however, this is not statistically significant (p = 0.270), with a standard error of 0.033.</p>
 <h1 id="causality-and-confounders">Causality and confounders</h1>
 <p>Since the explanatory variable of the</p>
 <h1 id="conclusion-section">Conclusion Section</h1>
 <p>The regression results in this study contradict one portion of my analysis which is that less democratic countries experience more deaths as a result from political violence. Nonetheless, I still believe that it is important to note that the porti</p>
+<p>BAsed on the results from the regression my hypothesis that less democratic countrues experience more deaths a a result from political violence and purge their citizens more cannot be proven nor negated. It is imperative that another dataset be used for this question in order to provide a more conclusive analysis of the relationshios between the two variables.</p>
 <p>Notes:
-- don’t want code to appear
+- don’t want code to appear “vio
 - what if both of my results are not statistically significant? do i find the confidence intervals?</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
