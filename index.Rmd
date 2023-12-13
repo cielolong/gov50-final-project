@@ -11,17 +11,17 @@ output:
 
 Does the level of democracy in a country influence its propensity for violent repression against its citizens? In this study I explore the relationship between the level of democracy in a specific country and its engagement in political repression. Due to the multifaceted nature of repression, this study will measure repression by examining both the frequency of purges that take place within a country as well as the prevalence of political violence. I hypothesize that less democratic countries are more prone to political violence, as they are less likely to control radical political expression allowing violent extremists more room to operate, potentially leading to higher levels of civil unrest, protests, and violent conflicts. In addition, given that there is typically more opposition towards an illegitimate regime, less democratic countries will be more inclined to purge their citizens with the hope of mitigating any threats. When countries are democratic and free, they are safer and more prosperous as citizens are less likely to retaliate against the government since they have control over their lives and work. 
 
-By understanding the dynamics between democracy and repression, I hope to explore how we as a society can increase the promotion of civil liberties and bolster the protections of citizens all across the globe. Efforts have been taken globally to promote democratic institutions of government, indicating that democratic governance reduces the likelihood of political repression. This has led to many policy makers in foreign policy to mitigate conditions that lead to repressive actions. If my hypothesis is supported, this would potentially suggest that policies promoting democratic governance may lead to the reduction of political instability and may serve as a strategy for reducing repressive actions taken against citizens. With that said, the information collected from this study could potentially be useful for civil society organizations as well as political officials who work on promoting human rights. 
+By understanding the dynamics between democracy and repression, I hope to explore how we as a society can increase the promotion of civil liberties and bolster the protections of citizens all across the globe. Efforts have been taken globally to promote democratic institutions of government, indicating that democratic governance reduces the likelihood of political repression. This has led to many policy makers in foreign policy attempting to mitigate conditions that lead to repressive actions. If my hypothesis is supported, this would potentially suggest that policies promoting democratic governance, which include promoting civil liberties, may lead to the reduction of political instability and may serve as a strategy for reducing repressive actions taken against citizens. With that said, the information collected from this study could potentially be useful for civil society organizations as well as political officials who work on promoting human rights. 
 
 # Data Section 
 
-The data used for this cross-sectional study was derived from the Political Violence Data set. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy and the outcome variables of interest include the number of purges in a country and the number of deaths from political violence. As mentioned previously, repression is a complex phenomenon. To investigate the relationship further, it is imperative that I use these two variables to provide a comprehensive analysis of political repression. While purges reflect the repressive actions taken against certain groups of the population, deaths from political violence reflects repressive actions taken against the general population as a whole. By providing different dimensions of repression, this study will offer a more nuanced understanding of how countries with varying levels of democracy engage in varying forms of repression. 
+The data used for this cross-sectional study was derived from the Political Violence Data set. My sample is composed of a selection of countries from various regions and with varying degrees of democracy. The explanatory variable of interest is the level of democracy and the outcome variables of interest include the number of purges in a country and the number of deaths from political violence. As mentioned previously, repression is a complex phenomenon. To investigate the relationship further, it is imperative that I use these two outcome variables to provide a comprehensive analysis of political repression. While purges reflect the repressive actions taken against certain groups of the population, deaths from political violence reflects repressive actions taken against the general population as a whole. By providing different dimensions of repression, this study will offer a more nuanced understanding of how countries with varying levels of democracy engage in varying forms of repression. 
 
-The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country's electoral process, political participation, functioning of government, freedom of expression etc. The purges variable, defined as any systematic elimination by jailing or execution of political opposition within the ranks of the regime or the opposition was measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." The variable of deaths from political violence was also measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis. 
+The scale of democracy is measured on a scale of 1-7 with 7 being the lowest level of democracy and 1 being the highest. This methodology was first adopted by Raymond Gastil, a Harvard-trained specialist in the field of civil liberties. Rather than using surveys or statistical models, this scale is reproduced each year using a combination of expert coding and analysis. To determine the score of democracy given to each country, in-house analysts assess a country's electoral process, political participation, functioning of government, freedom of expression etc. The purges variable, defined as any systematic elimination by jailing or execution of political opposition within the ranks of the regime or the opposition was measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." The variable of deaths from political violence was also measured by Arthur M. banks in the dataset "Cross-National Time Series Data Archive." The methodology for both outcome variables included gathering data from governmental records and historical archives. If there is a significant and positive correlation between lower ranges of democracy and higher rates of purges and deaths from political violence then it would support my hypothesis as it would suggest that political violence is more common in countries that are less democratic. On the other hand, if there is no significant relationship between lower levels of democracy and higher rates of purges and deaths from political violence, this would provide evidence against my hypothesis. 
 
  
 ```{r}
-#Reshaping Data
+#Reshaping Dataset
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
@@ -89,7 +89,7 @@ purges_plot <- violence_data_rshp |>
 
 purges_plot
 ```
-This visualization represents the second key outcome variable: deaths resulting from political violence. intriguingly, we notice that in the 70s high democratic countries actually experienced more citizen deaths from political violence than those with moderate or low levels of democracy. However, it is important to note that an outlier could have very well skewed the results since we were gathering the mean of deaths. In the 80s this pattern shifts. We see that on average, countries with lower levels of democracy experience more citizen deaths from political violence in comparison to moderate or high levels of democracy. 
+This visualization represents the second key outcome variable: deaths resulting from political violence. intriguingly, we notice that in the 70s high democratic countries actually experienced more citizen deaths from political violence than those with moderate or low levels of democracy. However, it is important to note that an outlier could have very well skewed the results since we are gathering the mean of deaths per thousand citizens. In the 80s this pattern shifts. We see that on average, countries with lower levels of democracy experience more citizen deaths from political violence in comparison to moderate or high levels of democracy. 
 
 # Results 
  
@@ -106,9 +106,9 @@ boxplot1<- violence_data_rshp|>
 geom_boxplot() 
 boxplot1
 ```
-Prior to performing a regression of the countries with varying levels of democracy and deaths resulting from political violence, a box plot can visualize the uni-variate distribution between these two variables. The box plot graph above plots the levels of democracy on the x-axis segmented into the categories "low" "middle" and "high", and plots the number of deaths per thousand citizens (log) on the y-axis. 
+Prior to performing a regression of the countries with varying levels of democracy and deaths resulting from political violence, a box plot can visualize the uni-variate distribution between these two variables. The box plot graph above plots the levels of democracy on the x-axis segmented into the categories "low" "middle" and "high", and plots the number of deaths per thousand citizens on the y-axis. To reduce the impact of extreme values and make the distribution more symmetric, I included the logarithm of deaths per thousand citizens.
 
-From this visualization we observe that High levels of democracy are generally associated with fewer deaths from political violence, with some notable exceptions (outliers). Middle levels of democracy have a wider spread of deaths, indicating more variability in political violence outcomes. Low levels of democracy also have a wide spread but tend to have a higher median number of deaths from political violence, which can imply that lower democracy levels are more often associated with higher deaths, although this is not universally the case.
+From this visualization we observe that countries with high levels of democracy are generally associated with fewer deaths from political violence, with some notable exceptions (outliers). We also notice that middle levels of democracy have a wider spread of deaths, which suggests that there is more variability in political violence outcomes. Low levels of democracy also have a wide spread but tend to have a higher median number of deaths from political violence, which can imply that lower democracy levels are more often associated with higher deaths. By using the median in comparison to the mean of deaths per citizens we notice a more conclusive relationship between levels of democracy and deaths resulting from political violence. 
 
 
 ```{r}
@@ -122,7 +122,7 @@ scatterplot1 <- ggplot(violence_data_rshp, aes(x = democ, y = purges)) +
     y = "Frequency of Purges",
     title = "The relationship between Levels of Democ & Purges"
   ) +
-  theme_minimal() +  # Clean theme
+  theme_minimal() + #Cleaning the theme of the scatterplot
   theme(
     plot.title = element_text(hjust = 0.5), 
     axis.text = element_text(size = 12), 
@@ -134,7 +134,7 @@ scatterplot1
 
 Prior to performing a regression of the countries with varying levels of democracy and their frequency of purges, a scatterplot can visualize the bivariate relationship between these two variables. The box plot graph above plots the levels of democracy on the x-axis, and plots the number of purges on the y-axis. 
 
-From this visualization we observe that as the level of democracy decreases there is a minimal, but clearly positive increase in the frequency of purges. This indicates that purges are slightly more common in less democratic regimes. Even though the trending increase is small, it is consistent enough across the data points to point to a pattern where lower levels of democracy are associated with higher frequencies of purges.
+From this visualization we observe that as the level of democracy decreases there is a minimal, but clearly positive increase in the frequency of purges. This indicates that purges are slightly more common in less democratic regimes. Even though the trending increase is small, it is consistent enough across the data points to point to a pattern where less democratic countries are associated with higher frequencies of purges.
 
 # Regression Analysis (Deaths from Political Violence)
 
@@ -164,20 +164,15 @@ pv_labels <- c(
 ```
 # Interpetation 
 
-The coefficient for low levels of democracy (as.factor(categorized_democracy)low) is approximately 0.00003805. This suggests that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of deaths from political violence increases by a factor of 0.00003805, holding all other variables constant. *the counfounding variables are*
+The coefficient for low levels of democracy (categorized_democracy(low)) is approximately 0.00003805. This coefficient indicates that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of deaths from political violence increases by a factor of 0.00003805, holding all other variables constant. The confounding variables include government crises, government corruption, and Gross Domestic Product. Government crises is defined as rapidly developing situation that threatens to bring the downfall of the present regime-excluding situations of revolt aimed at such overthrow. The variable government corruption is defined as the use of public power for private benefit. Lastly gross domestic product is defined as the economic performance of a country. In times of governmental crisis, governments may be more inclined to take extreme violent measures towards their citizens, resulting in experiencing more deaths from political violence. Oftentimes, when a government is more corrupt they are not concerned about the civil liberties of its citizens which adversely affects the welfare of the general population. Typically, wealthier countries are associated with lower death rates resulting from political violence. Taking all of these facts into consideration, controlling these variables isolates the specific impacts of levels of democracy and deaths resulting from repressive actions taken by the government. 
 
 # Statistical Significance
 
-In terms of statistical significance, the p-value associated with the low level of democracy coefficient is 0.9996, which is well above conventional significance level of 0.05. This means that the evidence is not strong enough to reject the null hypothesis that there is no relationship between low levels of democracy and the number of deaths due to political violence. In other words, we cannot confidently claim that there is a statistically significant relationship between low levels of democracy and deaths from political violence based on this regression output.
-
-# K
-one reason that statistical significance cannot ... = few data points.
-future: consider having the same research but using diff dataset = more observations.
-
+In terms of statistical significance, the p-value associated with the low level of democracy coefficient is 0.9996, which is above the significance level of 0.05. This means that the evidence is not strong enough to reject the null hypothesis that there is no relationship between low levels of democracy and the number of deaths due to political violence. In other words, we cannot confidently claim that there is a statistically significant relationship between low levels of democracy and deaths from political violence based on this regression output.
 
 # Causality 
 
-As for causality, the coefficient estimate itself does not imply causation, even if it were statistically significant. Establishing causality would require a research design that adequately addresses potential confounding factors and establishes a clear temporal precedence. Given that this is a cross-sectional analysis we should be cautious in making causal interpretations since other unobserved factors could influence both democracy levels and the number of deaths, leading to omitted variable bias.
+Even if the coefficient estimate were statistically significant, the coefficient estimate itself does not imply causation. In order to establish causality this research study would need to properly addresses potential confounding factors and establishes a clear temporal precedence. Given that this is a cross-sectional analysis we should be careful when making causal inferences since other unobserved factors could influence both democracy levels and the number of deaths, leading to omitted variable bias.
 
 # Regression Analysis for Purges  
 ```{r}
@@ -205,23 +200,20 @@ purges_labels <- c(
                              gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 # Interpretation 
-This regression indicates that countries lower in democratic levels will roughly increase the frequency of purges by about .200 points while holding other variables constant. Note that the scale of democracy is measured from 1-7 with 7 being the lowest level of democracy and 1 being the highest. With that said, a one unit "decrease" in democracy will result in a increase in the frequency of purges.  
-
+The coefficient for low levels of democracy (categorized_democracy(low)) is approximately 0.20046. This coefficient indicates that when a country has a low level of democracy, as opposed to the reference category (which is higher levels of democracy), the number of purges increases by a factor of 0.20046, holding all other variables constant. The confounding variables include government crises, government corruption, and Gross Domestic Product. Government crises is defined as rapidly developing situation that threatens to bring the downfall of the present regime-excluding situations of revolt aimed at such overthrow. The variable government corruption is defined as the use of public power for private benefit. Lastly gross domestic product is defined as the economic performance of a country. In times of governmental crisis, governments may be more inclined to take extreme violent measures towards their citizens, resulting in purging their citizens. Oftentimes, when a government is more corrupt they are not concerned about the civil liberties of its citizens which adversely affects the welfare of the general population. Typically, wealthier countries are associated with lower purge rates, and poorer countries are associated with higher purge rates. Taking all of these facts into consideration, controlling these variables isolates the specific impacts of levels of democracy and how often a country purges its citizens. 
  
 # Statistical Significane 
 
-While holding other variables constant, The coefficient for the level of democracy is 0.037, suggesting a very small positive association with the frequency of purges; however, this is not statistically significant (p = 0.270), with a standard error of 0.033.
+In terms of statistical significance, the p-value for the low democracy coefficient is 0.2204, which is greater than the significant threshold of 0.05. Therefore, we cannot reject the null hypothesis that there's no association between low levels of democracy and the number of purges. With that said, we cannot confidently claim that there is a statistically significant relationship between low levels of democracy and the frequency of purges based on this regression output.
 
-# Causality and confounders 
+# Causality 
 
 Since the explanatory variable of the 
 
-# Conclusion Section
-The regression results in this study contradict one portion of my analysis which is that less democratic countries experience more deaths as a result from political violence. Nonetheless, I still believe that it is important to note that the porti
+# Conclusion and Future Steps 
 
 BAsed on the results from the regression my hypothesis that less democratic countrues experience more deaths a a result from political violence and purge their citizens more cannot be proven nor negated. It is imperative that another dataset be used for this question in order to provide a more conclusive analysis of the relationshios between the two variables. 
 
-Notes: 
-- remove and reorganize code 
-- rewrite sections in your own words 
-- finish off conclusion 
+one reason that statistical significance cannot ... = few data points.
+future: consider having the same research but using diff dataset = more observations.
+
